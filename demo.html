@@ -1,0 +1,49 @@
+<!doctype html>
+
+<html>
+    <head>
+        <script src="http://ajax.googleapis.com/ajax/libs/jquery/1.9.1/jquery.min.js"></script>
+        <script src="js/jquery-html-template.js"></script>
+        <script src="js/jquery-html-templatify.js"></script>
+
+        <script>
+            // Demo HTML templates
+            (function($) {
+                $(document).ready(function() {
+                    // When button is clicked...
+                    $('button').bind(
+                        'click',
+                        function() {
+                            // Setup templates
+                            $.htmlTemplatify();
+
+                            // Create two templates
+                            var templateCopy = $.htmlTemplate('aTemp');
+
+                            // Add template content
+                            var list = templateCopy.filter('li');
+                            list.find('h1').text($('input').val());
+                            list.find('p').text('Lorem ipsum dolor set amet');
+
+                            // Add templates to body
+                            $('body ul').append(templateCopy);
+                        }
+                    );
+                })
+            }(jQuery));
+        </script>
+    </head>
+    <body>
+        <template id="aTemp">
+            <li>
+                <h1></h1>
+                <p></p>
+            </li>
+        </template>
+
+        <input value="new item" />
+        <button>add item</button>
+
+        <ul></ul>
+    </body>
+</html>
